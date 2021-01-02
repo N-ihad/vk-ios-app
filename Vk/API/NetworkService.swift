@@ -39,7 +39,7 @@ class NetworkService {
     
     func getCurrentUserFriends(completion: @escaping ((DataResponse<UsersResponse, AFError>) -> Void)) {
         var params = defaultParameters
-        params["fields"] = "photo_50,photo_100,photo_200_orig"
+        params["fields"] = "photo_50,photo_100,photo_200_orig,online"
         AF.request(API_URLs.getFriends, parameters: params).responseDecodable(of: UsersResponse.self, completionHandler: completion)
     }
     

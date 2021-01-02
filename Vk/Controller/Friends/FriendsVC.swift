@@ -38,6 +38,18 @@ class FriendsVC: UIViewController {
         startLoadingAnimation()
     }
     
+    // MARK: - API
+    
+    func fetchUserFriends() {
+        startLoadingAnimation()
+        BackendService.shared.fetchUserFriends { users in
+            self.friends = users
+            self.configureSections()
+            self.tableView.reloadData()
+            self.stopLoadingAnimation()
+        }
+    }
+    
     // MARK: - Helpers
     
     func configureSections() {
@@ -49,16 +61,6 @@ class FriendsVC: UIViewController {
             return friends
                 .filter { $0.titleFirstLetter == firstLetter }
                 .sorted { $0.lastName < $1.lastName }
-        }
-    }
-    
-    func fetchUserFriends() {
-        startLoadingAnimation()
-        BackendService.shared.fetchUserFriends { users in
-            self.friends = users
-            self.configureSections()
-            self.tableView.reloadData()
-            self.stopLoadingAnimation()
         }
     }
     
@@ -136,7 +138,7 @@ extension FriendsVC: UITableViewDelegate, UITableViewDataSource {
 //            user = User.alphabeticDictionaryOfUsersLastnames.getUsersByIndex(key: indexPath.section)[indexPath.row]
 //        }
         let user = sections[indexPath.section][indexPath.row]
-        cell.set(username: user.firstName + " " + user.lastName, userAvatarURL: URL(string: user.photo100) ?? URL(string: "")!)
+        cell.set(username: user.firstName + " " + user.lastName, userAvatarURL: URL(string: user.photo100) ?? URL(string: "")!, isOnline: (user.online != 0))
         cell.delegate = self
         
         return cell

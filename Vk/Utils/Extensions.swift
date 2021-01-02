@@ -164,6 +164,7 @@ extension UIColor {
     }
     
     static let vkBlue = UIColor.rgb(red: 60, green: 98, blue: 153)
+    static let vkBlueLight = UIColor.rgb(red: 55, green: 99, blue: 187)
 }
 
 // MARK: - UIImage

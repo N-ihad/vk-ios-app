@@ -46,6 +46,16 @@ class FriendCell: UITableViewCell {
     
     private let friendNameLabel = UILabel()
     
+    let onlineIndicator: UIView = {
+        let onlineIndicator = UIView()
+        onlineIndicator.setDimensions(width: 12, height: 12)
+        onlineIndicator.backgroundColor = .vkBlueLight
+        onlineIndicator.layer.cornerRadius = 12/2
+        onlineIndicator.isHidden = true
+        
+        return onlineIndicator
+    }()
+    
     private let likeCounterLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 20)
@@ -134,16 +144,17 @@ class FriendCell: UITableViewCell {
     
     // MARK: - Helpers
     
-    func set(username: String, userAvatarURL: URL) {
+    func set(username: String, userAvatarURL: URL, isOnline: Bool) {
         friendAvatarImageView.kf.setImage(with: userAvatarURL)
         friendNameLabel.text = username
+        onlineIndicator.isHidden = isOnline ? false : true
     }
     
     func configureUI() {
         friendAvatarView.addSubview(friendAvatarImageView)
         self.contentView.addSubview(friendAvatarView)
         self.contentView.addSubview(friendNameLabel)
-        self.contentView.addSubview(favouriteButton)
+//        self.contentView.addSubview(favouriteButton)
 //        self.contentView.addSubview(likeButton)
 //        self.contentView.addSubview(likeCounterLabel)
         friendAvatarView.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 16)
@@ -151,7 +162,10 @@ class FriendCell: UITableViewCell {
         friendNameLabel.centerY(inView: self, leftAnchor: friendAvatarView.rightAnchor, paddingLeft: 10)
 //        likeCounterLabel.centerY(inView: self, rightAnchor: rightAnchor, paddingRight: 38)
 //        likeButton.centerY(inView: self, rightAnchor: likeCounterLabel.leftAnchor, paddingRight: 8)
-        favouriteButton.centerY(inView: self, rightAnchor: rightAnchor, paddingRight: 26)
+//        favouriteButton.centerY(inView: self, rightAnchor: rightAnchor, paddingRight: 26)
+        
+        self.contentView.addSubview(onlineIndicator)
+        onlineIndicator.centerY(inView: self, rightAnchor: rightAnchor, paddingRight: 32)
     }
     
     func configureGestures() {

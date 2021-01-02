@@ -24,6 +24,7 @@ struct Users: Decodable {
 
 struct User: Decodable {
     let firstName: String
+    let online: Int
     let id: Int
     let lastName: String
     let photo50, photo100, photo200_Orig: String
@@ -32,6 +33,7 @@ struct User: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
+        case online
         case id
         case lastName = "last_name"
         case photo50 = "photo_50"
