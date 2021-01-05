@@ -42,11 +42,13 @@ class FriendsVC: UIViewController {
     
     func fetchUserFriends() {
         startLoadingAnimation()
-        BackendService.shared.fetchUserFriends { users in
-            self.friends = users
-            self.configureSections()
-            self.tableView.reloadData()
-            self.stopLoadingAnimation()
+        BackendService.shared.fetchUserFriends { [weak self] users in
+            self?.friends = users
+            self?.configureSections()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+                self?.stopLoadingAnimation()
+            }
         }
     }
     

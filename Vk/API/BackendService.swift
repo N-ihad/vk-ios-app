@@ -25,18 +25,22 @@ class BackendService {
     // MARK: - Get
     
     func fetchUserFriends(completion: @escaping ([User]) -> Void) {
-        NetworkService.shared.getCurrentUserFriends { (response) in
+        NetworkService.shared.getCurrentUserFriends { [weak self] (response) in
             guard let res = response.value else { return }
-            self.users = res.response.items
-            completion(self.users)
+            guard let strongSelf = self else { return }
+            
+            strongSelf.users = res.response.items
+            completion(strongSelf.users)
         }
     }
     
     func fetchUserGroups(completion: @escaping ([Group]) -> Void) {
-        NetworkService.shared.getCurrentUserGroups { response in
+        NetworkService.shared.getCurrentUserGroups { [weak self] response in
             guard let res = response.value else { return }
-            self.groups = res.response.items
-            completion(self.groups)
+            guard let strongSelf = self else { return }
+            
+            strongSelf.groups = res.response.items
+            completion(strongSelf.groups)
         }
     }
     

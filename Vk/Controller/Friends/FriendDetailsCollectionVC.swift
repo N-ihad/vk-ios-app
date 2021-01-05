@@ -48,8 +48,8 @@ class FriendDetailsCollectionVC: UICollectionViewController {
     // MARK: - Helpers
     
     func fetchPhotosOfUser(withID userID: String) {
-        BackendService.shared.fetchPhotosOfUser(withID: userID) { photos in
-            self.photos = photos
+        BackendService.shared.fetchPhotosOfUser(withID: userID) { [weak self] photos in
+            self?.photos = photos
         }
     }
     

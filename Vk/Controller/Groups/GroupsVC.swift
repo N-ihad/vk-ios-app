@@ -36,9 +36,11 @@ class GroupsVC: UIViewController {
     
     // MARK: - Helpers
     func fetchUserGroups() {
-        BackendService.shared.fetchUserGroups { groups in
-            self.groups = groups
-            self.tableView.reloadData()
+        BackendService.shared.fetchUserGroups { [weak self] groups in
+            self?.groups = groups
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
     }
     
