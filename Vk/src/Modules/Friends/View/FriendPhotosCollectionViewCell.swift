@@ -1,6 +1,5 @@
 //
 //  FriendPhotosCell.swift
-//  Eigth_homework_task
 //
 //  Created by Nihad on 11/23/20.
 //

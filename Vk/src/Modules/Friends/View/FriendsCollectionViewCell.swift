@@ -1,6 +1,5 @@
 //
 //  FriendCell.swift
-//  Eigth homework task
 //
 //  Created by Nihad on 11/16/20.
 //
@@ -61,7 +60,7 @@ final class FriendsCollectionViewCell: UITableViewCell {
     }()
     
     private lazy var favoriteButton: UIButton = {
-        let favoriteButton = Utilities.makeButton(
+        let favoriteButton = Helper.makeButton(
             with: .themeBlue,
             imgForNormalState: .star,
             imgForSelectedState: .starFilled,
@@ -73,7 +72,7 @@ final class FriendsCollectionViewCell: UITableViewCell {
     }()
     
     private lazy var likeButton: UIButton = {
-        let likeButton = Utilities.makeButton(
+        let likeButton = Helper.makeButton(
             with: .themeBlue,
             imgForNormalState: .heart,
             imgForSelectedState: .heartFilled,
@@ -115,7 +114,7 @@ final class FriendsCollectionViewCell: UITableViewCell {
     }
 
     @objc private func onAvatarTap() {
-        Utilities.animate(view: friendAvatarView)
+        Helper.animate(view: friendAvatarView)
         delegate?.friendsCollectionViewCellDidReceiveAvatarTap(self)
     }
 

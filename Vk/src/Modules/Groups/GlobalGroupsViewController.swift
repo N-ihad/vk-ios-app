@@ -1,6 +1,5 @@
 //
 //  GlobalGroupsVC.swift
-//  Eigth homework task
 //
 //  Created by Nihad on 11/17/20.
 //
@@ -27,7 +26,7 @@ final class GlobalGroupsViewController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = 80
         tableView.sectionHeaderHeight = 300
-        tableView.register(GroupTableViewCell.self, forCellReuseIdentifier: identifier)
+        tableView.register(GroupsTableViewCell.self, forCellReuseIdentifier: identifier)
 
         let screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(onBack))
         screenEdgeRecognizer.edges = .left
@@ -55,7 +54,7 @@ extension GlobalGroupsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: identifier) as! GroupTableViewCell
+        return tableView.dequeueReusableCell(withIdentifier: identifier) as! GroupsTableViewCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

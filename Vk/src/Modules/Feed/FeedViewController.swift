@@ -1,6 +1,5 @@
 //
-//  NewsVC.swift
-//  Eigth homework task
+//  FeedViewController.swift
 //
 //  Created by Nihad on 11/16/20.
 //
@@ -9,7 +8,7 @@ import UIKit
 
 private let mockDescription = "asdfasdfa ksdmflka msdlkfma lskdmfl akmsdlfkm alsdmfl amsdlkfm alskdmfl askmdlf masldkfm laskdmfl amsdlf masl asmdflk amsldkmf laskmdfl kamsdlkfm aslkdmf"
 
-final class NewsViewController: UIViewController {
+final class FeedViewController: UIViewController {
 
 //    var mockPosts: [Post] = [
 //        Post(poster: user, description: descr, image: UIImage(named: "testAvatar1")!),
@@ -33,7 +32,7 @@ final class NewsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: identifier)
+        tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: identifier)
     }
 
     private func layout() {
@@ -43,7 +42,7 @@ final class NewsViewController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
+extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -53,7 +52,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! PostTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! FeedTableViewCell
         let post = posts[indexPath.row]
         cell.set(post: post)
         return cell

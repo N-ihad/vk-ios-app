@@ -1,13 +1,20 @@
 //
-//  Utilities.swift
-//  Eigth homework task
+//  Helper.swift
 //
 //  Created by Nihad on 11/16/20.
 //
 
 import UIKit
 
-struct Utilities {
+struct Helper {
+    static func makeNavigationController(icon: UIImage,
+                                         rootViewController: UIViewController) -> UINavigationController {
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        navigationController.tabBarItem.image = icon
+        navigationController.navigationBar.barTintColor = .white
+        return navigationController
+    }
+
     static func makeInputContainerView(withImage image: UIImage, textField: UITextField) -> UIView {
         let view = UIView()
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true

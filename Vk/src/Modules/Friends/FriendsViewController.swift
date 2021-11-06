@@ -1,6 +1,5 @@
 //
 //  FriendsViewController.swift
-//  Eigth homework task
 //
 //  Created by Nihad on 11/16/20.
 //
@@ -12,7 +11,7 @@ final class FriendsViewController: UIViewController {
 
     private let tableView = UITableView()
     private let searchController = UISearchController(searchResultsController: nil)
-    private let loadingOverlay = Utilities.makeLoadingView()
+    private let loadingOverlay = Helper.makeLoadingView()
 
     private var filteredData = [User]()
     private var friends: [User] = []

@@ -82,7 +82,7 @@ extension WebLoginViewController: WKUIDelegate, WKNavigationDelegate {
             VkService.shared.setSession(with: token, and: userID)
         }
 
-        let mainTabBarController = MainTabBarController()
+        let mainTabBarController = TabBarController()
         mainTabBarController.modalPresentationStyle = .fullScreen
         present(mainTabBarController, animated: true)
 

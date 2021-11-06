@@ -1,6 +1,5 @@
 //
-//  GroupsVC.swift
-//  Eigth homework task
+//  GroupsViewController.swift
 //
 //  Created by Nihad on 11/16/20.
 //
@@ -49,7 +48,7 @@ final class GroupsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 80
-        tableView.register(GroupTableViewCell.self, forCellReuseIdentifier: identifier)
+        tableView.register(GroupsTableViewCell.self, forCellReuseIdentifier: identifier)
     }
 
     private func layout() {
@@ -84,7 +83,7 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell") as! GroupTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell") as! GroupsTableViewCell
 
         guard let groups = groups,
               let url = URL(string: groups[indexPath.row].photo50) else {

@@ -1,6 +1,5 @@
 //
 //  FriendCellDetailsCollectionVC.swift
-//  Eigth homework task
 //
 //  Created by Nihad on 11/17/20.
 //

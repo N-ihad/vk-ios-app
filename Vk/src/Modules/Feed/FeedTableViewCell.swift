@@ -1,21 +1,20 @@
 //
 //  PostCell.swift
-//  Eigth homework task
 //
 //  Created by Nihad on 11/17/20.
 //
 
 import UIKit
 
-protocol PostTableViewCellDelegate: AnyObject {
-    func postTableViewCellDidReceiveLikeTap(_ cell: PostTableViewCell)
-    func postTableViewCellDidReceiveShareTap(_ cell: PostTableViewCell)
-    func postTableViewCellDidReceiveCommentTap(_ cell: PostTableViewCell)
+protocol FeedTableViewCellDelegate: AnyObject {
+    func feedTableViewCellDidReceiveLikeTap(_ cell: FeedTableViewCell)
+    func feedTableViewCellDidReceiveShareTap(_ cell: FeedTableViewCell)
+    func feedTableViewCellDidReceiveCommentTap(_ cell: FeedTableViewCell)
 }
 
-final class PostTableViewCell: UITableViewCell {
+final class FeedTableViewCell: UITableViewCell {
 
-    weak var delegate: PostTableViewCellDelegate?
+    weak var delegate: FeedTableViewCellDelegate?
 
     private let posterImageView: UIImageView = {
         let posterImageView = UIImageView()
@@ -46,11 +45,11 @@ final class PostTableViewCell: UITableViewCell {
         return postImage
     }()
 
-    private let headerDivider = Utilities.makeDividerView(color: UIColor.gray)
-    private let footerDivider = Utilities.makeDividerView(color: UIColor.gray)
+    private let headerDivider = Helper.makeDividerView(color: UIColor.gray)
+    private let footerDivider = Helper.makeDividerView(color: UIColor.gray)
     
     private lazy var likeButton: UIButton = {
-        let likeButton = Utilities.makeButton(
+        let likeButton = Helper.makeButton(
             with: .themeBlue,
             imgForNormalState: .heart,
             imgForSelectedState: .heartFilled,
@@ -62,7 +61,7 @@ final class PostTableViewCell: UITableViewCell {
     }()
     
     private lazy var shareButton: UIButton = {
-        let shareButton = Utilities.makeButton(
+        let shareButton = Helper.makeButton(
             with: .themeBlue,
             imgForNormalState: .share,
             imgForSelectedState: .shareFilled,
@@ -148,11 +147,11 @@ final class PostTableViewCell: UITableViewCell {
 
     @objc private func onLike(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        delegate?.postTableViewCellDidReceiveLikeTap(self)
+        delegate?.feedTableViewCellDidReceiveLikeTap(self)
     }
 
     @objc private func onOpenComments() {
-        delegate?.postTableViewCellDidReceiveCommentTap(self)
+        delegate?.feedTableViewCellDidReceiveCommentTap(self)
     }
 
     func set(post: Post) {

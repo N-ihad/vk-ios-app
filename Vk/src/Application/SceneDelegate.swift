@@ -1,6 +1,5 @@
 //
 //  SceneDelegate.swift
-//  Eigth homework task
 //
 //  Created by Nihad on 11/16/20.
 //

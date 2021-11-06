@@ -1,13 +1,12 @@
 //
-//  GroupTableViewCell.swift
-//  Eigth homework task
+//  GroupsTableViewCell.swift
 //
 //  Created by Nihad on 11/17/20.
 //
 
 import UIKit
 
-final class GroupTableViewCell: UITableViewCell {
+final class GroupsTableViewCell: UITableViewCell {
 
     private let groupImageView: UIImageView = {
         let groupImageView = UIImageView()
@@ -52,7 +51,7 @@ final class GroupTableViewCell: UITableViewCell {
     }
 
     @objc private func handleAvatarTapped() {
-        Utilities.animate(view: groupImageView)
+        Helper.animate(view: groupImageView)
     }
     
     func set(groupTitle: String, groupAvatarURL: URL) {

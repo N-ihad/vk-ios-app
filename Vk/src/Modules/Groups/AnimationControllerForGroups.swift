@@ -1,13 +1,12 @@
 //
-//  AnimationController.swift
-//  Ninth_homework_task
+//  AnimationControllerForGroups.swift
 //
 //  Created by Nihad on 11/24/20.
 //
 
 import UIKit
 
-final class AnimationController: NSObject {
+final class AnimationControllerForGroups: NSObject {
 
     enum AnimationType {
         case push
@@ -24,18 +23,18 @@ final class AnimationController: NSObject {
 }
 
 // MARK: - UIViewControllerAnimatedTransitioning
-extension AnimationController: UIViewControllerAnimatedTransitioning {
+extension AnimationControllerForGroups: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return TimeInterval(exactly: animationDuration) ?? 0
     }
-    
+
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let toView = transitionContext.view(forKey: .to),
               let fromView = transitionContext.view(forKey: .from) else {
             transitionContext.completeTransition(false)
             return
         }
-
+        
         switch animationType {
         case .push:
             transitionContext.containerView.addSubview(fromView)
@@ -48,7 +47,8 @@ extension AnimationController: UIViewControllerAnimatedTransitioning {
         }
     }
 
-    func presentAnimation(with transitionContext: UIViewControllerContextTransitioning, fromView: UIView, toView: UIView) {
+    func presentAnimation(with transitionContext: UIViewControllerContextTransitioning,
+                          fromView: UIView, toView: UIView) {
         fromView.setAnchorPoint(CGPoint(x: 0, y: 0))
         toView.setAnchorPoint(CGPoint(x: 0, y: 0))
 
@@ -56,31 +56,25 @@ extension AnimationController: UIViewControllerAnimatedTransitioning {
 
         let duration = transitionDuration(using: transitionContext)
 
-        UIView.animate(
-            withDuration: duration,
-            animations: {
-                fromView.transform = CGAffineTransform(rotationAngle: .pi / 2)
-                toView.transform = CGAffineTransform.identity
-            }
-        ) { _ in
-            fromView.transform = CGAffineTransform.identity
+        UIView.animate(withDuration: duration, animations: {
+            fromView.transform = CGAffineTransform(rotationAngle: .pi / 2)
+            toView.transform = CGAffineTransform.identity
+        }) { _ in
             transitionContext.completeTransition(true)
         }
     }
-
-    func dismissAnimation(with transitionContext: UIViewControllerContextTransitioning, fromView: UIView, toView: UIView) {
-        fromView.setAnchorPoint(CGPoint(x: 0, y: 0))
-        toView.setAnchorPoint(CGPoint(x: 0, y: 0))
-
-        toView.transform = CGAffineTransform(rotationAngle: .pi/2)
-
-        let duration = self.transitionDuration(using: transitionContext)
+    
+    func dismissAnimation(with transitionContext: UIViewControllerContextTransitioning,
+                          fromView: UIView, toView: UIView) {
+        fromView.alpha = 1
+        toView.alpha = 0
+        let duration = transitionDuration(using: transitionContext)
 
         UIView.animate(
             withDuration: duration,
             animations: {
-                fromView.transform = CGAffineTransform(rotationAngle: -.pi / 2)
-                toView.transform = CGAffineTransform.identity
+                fromView.alpha = 0
+                toView.alpha = 1
             }
         ) { _ in
             transitionContext.completeTransition(true)

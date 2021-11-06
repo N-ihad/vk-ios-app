@@ -12,6 +12,7 @@ struct UsersResponse: Decodable {
 }
 
 struct Users: Decodable {
+
     let count: Int
     let items: [User]
 
@@ -31,6 +32,10 @@ struct User: Decodable {
     let trackCode: String
     let deactivated: String?
 
+    var titleFirstLetter: String {
+        String(lastName[lastName.startIndex]).uppercased()
+    }
+
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
         case online
@@ -41,12 +46,5 @@ struct User: Decodable {
         case photo200_Orig = "photo_200_orig"
         case trackCode = "track_code"
         case deactivated
-    }
-}
-
-
-extension User {
-    var titleFirstLetter: String {
-        return String(self.lastName[self.lastName.startIndex]).uppercased()
     }
 }

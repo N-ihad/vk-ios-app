@@ -1,6 +1,5 @@
 //
 //  LoginViewController.swift
-//  Eigth homework task
 //
 //  Created by Nihad on 11/16/20.
 //
@@ -17,13 +16,13 @@ final class LoginViewController: UIViewController {
         return logoImageView
     }()
 
-    private lazy var emailContainerView = Utilities.makeInputContainerView(withImage: .emailIcon, textField: emailTextField)
-    private lazy var passwordContainerView = Utilities.makeInputContainerView(withImage: .passwordIcon, textField: passwordTextField)
+    private lazy var emailContainerView = Helper.makeInputContainerView(withImage: .emailIcon, textField: emailTextField)
+    private lazy var passwordContainerView = Helper.makeInputContainerView(withImage: .passwordIcon, textField: passwordTextField)
     
-    private let emailTextField = Utilities.makeTextField(withPlaceholder: "Email")
+    private let emailTextField = Helper.makeTextField(withPlaceholder: "Email")
     
     private let passwordTextField: UITextField = {
-        let passwordTextField = Utilities.makeTextField(withPlaceholder: "Password")
+        let passwordTextField = Helper.makeTextField(withPlaceholder: "Password")
         passwordTextField.isSecureTextEntry = true
         return passwordTextField
     }()
@@ -75,7 +74,7 @@ final class LoginViewController: UIViewController {
     }
 
     @objc private func onLogin() {
-        let mainTabBarController = MainTabBarController()
+        let mainTabBarController = TabBarController()
         mainTabBarController.modalPresentationStyle = .fullScreen
         present(mainTabBarController, animated: true)
     }
